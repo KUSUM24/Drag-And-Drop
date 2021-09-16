@@ -59,4 +59,13 @@ hr {
   .drag-panel {
     flex-direction: column;
   }
+  .drop-panel--container {
+    width: 100%;
+  }
+  .results--container {
+    width: 100%;
+  }
+  .drop-panel {
+    flex-direction: column;
+  }
 }

@@ -1,6 +1,5 @@
 {
   "name": "new-app",
-  "homepage": "https://kusum24.github.io/Corona_Statistics/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
