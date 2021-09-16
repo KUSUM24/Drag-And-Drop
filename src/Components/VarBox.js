@@ -1,25 +1,26 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-export const VarBox = ({ index, value }) => {
+export const VarBox = ({ dropBox, index, value }) => {
   return (
     <>
+      {/* <div>{dropBox}</div> */}
       <Draggable
-        key={index.toString()}
-        draggableId={index.toString()}
+        key={dropBox + index.toString()}
+        draggableId={dropBox + index.toString()}
         index={index}
-        id={index.toString()}
+        // id={index.toString()}
       >
         {(provided) => (
-          <div
-            key={index}
+          <span
+            // key={index.toString()}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
             className="varBox--button btn"
           >
             {value}
-          </div>
+          </span>
         )}
       </Draggable>
     </>

@@ -4,7 +4,8 @@ hr {
 }
 .varBox--button {
   margin: 5px;
-  padding: 15px 20px !important;
+  padding: 40px 40px !important;
+  line-height: 1;
   background-color: #c71585 !important;
   color: white !important;
   font-weight: 500 !important;
@@ -12,9 +13,10 @@ hr {
 }
 .varBox--container {
   background-color: rgb(235, 235, 235);
-  width: 70%;
-  max-height: 50vh;
-  overflow: scroll;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
 }
 .drag-panel {
   display: flex;
@@ -42,14 +44,24 @@ hr {
 .drop-panel--container {
   background-color: rgb(211, 211, 211);
   width: 70%;
-  height: 50vh;
+  /* height: 50vh; */
+  display: flex;
+  align-items: center;
+  overflow-x: scroll;
 }
 .results--container {
   border: 2px solid gray;
   width: 30%;
   background-color: lavender;
 }
+.operators {
+  flex: 1;
+}
 @media screen and (max-width: 780px) {
+  .operator--container {
+    width: 100%;
+    margin: 20px 0px;
+  }
   .varBox--container {
     width: 100%;
   }
