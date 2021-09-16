@@ -19,7 +19,7 @@ export const List = (props) => {
     );
   };
   return (
-    <DragDropContext>
+    <DragDropContext onDragEnd={props.handleDrag}>
       <Droppable droppableId="index">
         {(provided) => (
           <div
@@ -28,6 +28,7 @@ export const List = (props) => {
             className="varBox--container"
           >
             {props.variables.map(getBoxes)}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

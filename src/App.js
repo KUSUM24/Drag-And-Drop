@@ -258,7 +258,13 @@ export const App = () => {
     "D",
     "K",
   ]);
-  const handleDrag = () => {};
+  const handleDrag = (result) => {
+    console.log(result);
+    const items = variables;
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setVariables(items);
+  };
   return (
     <>
       {/* <DragDropContext> */}
@@ -270,6 +276,7 @@ export const App = () => {
             // innerRef={provided.innerRef}
             // {...provided.droppableProps}
             variables={variables}
+            handleDrag={handleDrag}
           />
           <Operators className="operators" />
         </div>
