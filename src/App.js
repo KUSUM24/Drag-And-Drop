@@ -259,11 +259,15 @@ export const App = () => {
     "K",
   ]);
   const [query, setQuery] = useState([]);
+  const [operation, setOperation] = useState();
   const handleDrag = (result) => {
+    const { source, destination } = result;
     if (!result.destination) {
       return;
     }
-    const { source, destination } = result;
+    if (destination.droppableId == "operator") {
+      return;
+    }
     console.log(source, destination);
     if (source.droppableId != destination.droppableId) {
       if (source.droppableId == "source") {
@@ -273,7 +277,32 @@ export const App = () => {
         currentQuery.splice(destination.index, 0, currentItem);
         setVariables(currentVariables);
         setQuery(currentQuery);
+      } else if (
+        source.droppableId == "operator" &&
+        destination.droppableId == "source"
+      ) {
+        return;
+      } else if (
+        source.droppableId == "operator" &&
+        destination.droppableId == "destination"
+      ) {
+        let currentOperation = "";
+        if (source.index == 301) {
+          setOperation("lt");
+          currentOperation = "lt";
+        } else if (source.index == 300) {
+          setOperation("gt");
+          currentOperation = "gt";
+        } else {
+          setOperation("int");
+          currentOperation = "int";
+        }
+        let currentQuery = query;
+        currentQuery.push(currentOperation);
+        setQuery(currentQuery);
       } else {
+      }
+      {
         const currentQuery = query;
         const currentVariables = variables;
         const currentItem = currentQuery.splice(source.index, 1);
