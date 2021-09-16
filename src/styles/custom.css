@@ -20,6 +20,7 @@ hr {
 }
 .drag-panel {
   display: flex;
+  align-items: flex-start;
 }
 .operation--container {
   display: flex;
@@ -40,11 +41,12 @@ hr {
 }
 .drop-panel {
   display: flex;
+  /* flex: 1; */
 }
 .drop-panel--container {
   background-color: rgb(211, 211, 211);
   width: 70%;
-  /* height: 50vh; */
+  height: 20vh;
   display: flex;
   align-items: center;
   overflow-x: scroll;
@@ -56,6 +58,11 @@ hr {
 }
 .operators {
   flex: 1;
+  /* padding: 2%; */
+}
+.drop-section {
+  flex: 2;
+  height: 200vh;
 }
 @media screen and (max-width: 780px) {
   .operator--container {

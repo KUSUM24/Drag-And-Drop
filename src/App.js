@@ -309,7 +309,7 @@ export const App = () => {
           />
           <div className="drag-panel">
             <Operators className="operators" />
-            <DropPanel query={query} />
+            <DropPanel className="drop-section" query={query} />
           </div>
           <div className="drop-panel">
             <Results />
