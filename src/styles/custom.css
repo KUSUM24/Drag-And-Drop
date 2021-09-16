@@ -36,7 +36,18 @@ hr {
   margin: 10px;
   font-size: 30px !important;
 }
-.integer--button {
+.drop-panel {
+  display: flex;
+}
+.drop-panel--container {
+  background-color: rgb(211, 211, 211);
+  width: 70%;
+  height: 50vh;
+}
+.results--container {
+  border: 2px solid gray;
+  width: 30%;
+  background-color: lavender;
 }
 @media screen and (max-width: 780px) {
   .varBox--container {

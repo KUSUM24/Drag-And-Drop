@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DropPanel } from "./Components/DropPanel";
+import { DragDropContext } from "react-beautiful-dnd";
 import { List } from "./Components/List";
 import { Operators } from "./Components/Operators";
 import { Results } from "./Components/Results";
@@ -259,12 +260,16 @@ export const App = () => {
   ]);
   return (
     <>
+      {/* <DragDropContext> */}
       <div className="drag-panel">
         <List variables={variables} />
         <Operators className="operators" />
       </div>
-      <DropPanel />
-      <Results />
+      <div className="drop-panel">
+        <DropPanel />
+        <Results />
+      </div>
+      {/* </DragDropContext> */}
     </>
   );
 };
