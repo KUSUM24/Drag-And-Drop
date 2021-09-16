@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { DropPanel } from "./Components/DropPanel";
-import { DragDropContext } from "react-beautiful-dnd";
+import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { List } from "./Components/List";
 import { Operators } from "./Components/Operators";
 import { Results } from "./Components/Results";
 import "./styles/custom.css";
 export const App = () => {
   const [variables, setVariables] = useState([
-    "A",
+    "Kusum",
     "B",
     "C",
     "D",
-    "K",
+    "Jai",
     "A",
     "B",
     "C",
@@ -258,17 +258,28 @@ export const App = () => {
     "D",
     "K",
   ]);
+  const handleDrag = () => {};
   return (
     <>
       {/* <DragDropContext> */}
-      <div className="drag-panel">
-        <List variables={variables} />
-        <Operators className="operators" />
-      </div>
-      <div className="drop-panel">
-        <DropPanel />
-        <Results />
-      </div>
+      {/* <Droppable droppableId="index"> */}
+      {/* {(provided) => ( */}
+      <>
+        <div className="drag-panel">
+          <List
+            // innerRef={provided.innerRef}
+            // {...provided.droppableProps}
+            variables={variables}
+          />
+          <Operators className="operators" />
+        </div>
+        <div className="drop-panel">
+          <DropPanel />
+          <Results />
+        </div>
+      </>
+      {/* )} */}
+      {/* </Droppable> */}
       {/* </DragDropContext> */}
     </>
   );
