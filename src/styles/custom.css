@@ -1,0 +1,51 @@
+hr {
+  color: gray;
+  height: 2px !important;
+}
+.varBox--button {
+  margin: 5px;
+  padding: 15px 20px !important;
+  background-color: #c71585 !important;
+  color: white !important;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+.varBox--container {
+  background-color: rgb(235, 235, 235);
+  width: 70%;
+  max-height: 50vh;
+  overflow: scroll;
+}
+.drag-panel {
+  display: flex;
+}
+.operation--container {
+  display: flex;
+}
+.operator--container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  /* width: 100%; */
+}
+.operation--button {
+  background-color: aqua !important;
+  padding: 15px 30px !important;
+  margin: 10px;
+  font-size: 30px !important;
+}
+.integer--button {
+}
+@media screen and (max-width: 780px) {
+  .varBox--container {
+    width: 100%;
+  }
+  .operators {
+    width: 100%;
+  }
+  .drag-panel {
+    flex-direction: column;
+  }
+}
