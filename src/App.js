@@ -5,6 +5,7 @@ import { List } from "./Components/List";
 import { Operators } from "./Components/Operators";
 import { Results } from "./Components/Results";
 import "./styles/custom.css";
+import { FormatIndex } from "./Components/FormatIndex";
 export const App = () => {
   const [variables, setVariables] = useState([
     "Kusum",
@@ -389,7 +390,10 @@ export const App = () => {
           />
           <div className="drag-panel">
             <Operators className="operators" />
-            <DropPanel className="drop-section" query={query} />
+            <div className="w-100">
+              <FormatIndex />
+              <DropPanel className="drop-section" query={query} />
+            </div>
           </div>
           <div className="drop-panel">
             <Results />

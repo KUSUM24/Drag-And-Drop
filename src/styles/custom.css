@@ -46,7 +46,7 @@ hr {
 }
 .drop-panel--container {
   background-color: rgb(211, 211, 211);
-  width: 70%;
+  width: 100%;
   height: 20vh;
   display: flex;
   align-items: center;
@@ -67,6 +67,27 @@ hr {
 }
 .drop-panel--container .integer--button {
   padding: 40px !important;
+}
+.index-source {
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px;
+
+  background-color: #c71585;
+}
+.index-operator {
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px;
+
+  background-color: aqua !important;
+}
+.index-int {
+  width: 40px;
+  height: 40px;
+  margin: 5px 10px;
+
+  background-color: #198754;
 }
 @media screen and (max-width: 780px) {
   .operator--container {
