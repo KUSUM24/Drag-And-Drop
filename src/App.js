@@ -275,6 +275,9 @@ export const App = () => {
     console.log(source.droppableId, destination.droppableId);
     let currentVariables = variables;
     let currentQuery = query;
+    if (currentQuery.length >= 3) {
+      return;
+    }
 
     if (source.droppableId == "source" && destination.droppableId == "source") {
       const item = currentVariables.splice(source.index, 1);
@@ -285,7 +288,7 @@ export const App = () => {
       destination.droppableId == "destination"
     ) {
       const item = currentVariables.splice(source.index, 1);
-      currentQuery.splice(destination.index, 0, item);
+      currentQuery.splice(currentQuery.length, 0, item);
     }
     if (
       source.droppableId == "destination" &&
@@ -313,7 +316,7 @@ export const App = () => {
         item = "Int";
       }
       console.log(source);
-      currentQuery.splice(destination.index, 0, item);
+      currentQuery.splice(currentQuery.length, 0, item);
     }
     setQuery(currentQuery);
     setVariables(currentVariables);
