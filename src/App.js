@@ -260,73 +260,110 @@ export const App = () => {
   ]);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
+  const handleDragStart = (start) => {
+    console.log(start);
+  };
   const handleDrag = (result) => {
     const { source, destination } = result;
-    if (!result.destination) {
+    if (!source || !destination) {
       return;
     }
     if (destination.droppableId == "operator") {
       return;
     }
-    console.log(source, destination);
-    if (source.droppableId != destination.droppableId) {
-      if (source.droppableId == "source") {
-        const currentVariables = variables;
-        const currentQuery = query;
-        const currentItem = currentVariables.splice(source.index, 1);
-        currentQuery.splice(destination.index, 0, currentItem);
-        setVariables(currentVariables);
-        setQuery(currentQuery);
-      } else if (
-        source.droppableId == "operator" &&
-        destination.droppableId == "source"
-      ) {
-        return;
-      } else if (
-        source.droppableId == "operator" &&
-        destination.droppableId == "destination"
-      ) {
-        let currentOperation = "";
-        if (source.index == 301) {
-          setOperation("lt");
-          currentOperation = "lt";
-        } else if (source.index == 300) {
-          setOperation("gt");
-          currentOperation = "gt";
-        } else {
-          setOperation("int");
-          currentOperation = "int";
-        }
-        let currentQuery = query;
-        currentQuery.push(currentOperation);
-        setQuery(currentQuery);
-      } else {
-      }
-      {
-        const currentQuery = query;
-        const currentVariables = variables;
-        const currentItem = currentQuery.splice(source.index, 1);
-        currentVariables.splice(destination.index, 0, currentItem);
-        setQuery(currentQuery);
-        setVariables(currentVariables);
-      }
-    } else {
-      if (result.destination.droppableId == "destination") {
-        const items = query;
-        const reorderedItem = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-        setQuery(items);
-      } else {
-        const items = variables;
-        const reorderedItem = items.splice(result.source.index, 1);
-        items.splice(result.destination.index, 0, reorderedItem);
-        setVariables(items);
-      }
+    console.log(source.droppableId, destination.droppableId);
+    let currentVariables = variables;
+    let currentQuery = query;
+
+    if (source.droppableId == "source" && destination.droppableId == "source") {
+      const item = currentVariables.splice(source.index, 1);
+      currentVariables.splice(destination.index, 0, item);
     }
+    if (
+      source.droppableId == "destination" &&
+      destination.droppableId == "destination"
+    ) {
+      const item = currentQuery.splice(source.index, 1);
+      currentQuery.splice(destination.index, 0, item);
+    }
+    if (
+      source.droppableId == "source" &&
+      destination.droppableId == "destination"
+    ) {
+      const item = currentVariables.splice(source.index, 1);
+      currentQuery.splice(destination.index, 0, item);
+    }
+    if (
+      source.droppableId == "destination" &&
+      destination.droppableId == "source"
+    ) {
+      const item = currentQuery.splice(source.index, 1);
+      currentVariables.splice(destination.index, 0, item);
+    }
+    setQuery(currentQuery);
+    setVariables(currentVariables);
+    // if (destination.droppableId == "operator") {
+    //   return;
+    // }
+    // console.log(source, destination);
+    // if (source.droppableId != destination.droppableId) {
+    //   if (source.droppableId == "source") {
+    //     const currentVariables = variables;
+    //     const currentQuery = query;
+    //     const currentItem = currentVariables.splice(source.index, 1);
+    //     currentQuery.splice(destination.index, 0, currentItem);
+    //     setVariables(currentVariables);
+    //     setQuery(currentQuery);
+    //   } else if (
+    //     source.droppableId == "operator" &&
+    //     destination.droppableId == "source"
+    //   ) {
+    //     return;
+    //   } else if (
+    //     source.droppableId == "operator" &&
+    //     destination.droppableId == "destination"
+    //   ) {
+    //     let currentOperation = "";
+    //     if (source.index == 301) {
+    //       setOperation("lt");
+    //       currentOperation = "lt";
+    //     } else if (source.index == 300) {
+    //       setOperation("gt");
+    //       currentOperation = "gt";
+    //     } else {
+    //       setOperation("int");
+    //       currentOperation = "int";
+    //     }
+    //     let currentQuery = query;
+    //     currentQuery.push(currentOperation);
+    //     setQuery(currentQuery);
+    //   } else {
+    //   }
+    //   {
+    //     const currentQuery = query;
+    //     const currentVariables = variables;
+    //     const currentItem = currentQuery.splice(source.index, 1);
+    //     currentVariables.splice(destination.index, 0, currentItem);
+    //     setQuery(currentQuery);
+    //     setVariables(currentVariables);
+    //   }
+    // } else {
+    //   if (result.destination.droppableId == "destination") {
+    //     const items = query;
+    //     const reorderedItem = items.splice(result.source.index, 1);
+    //     items.splice(result.destination.index, 0, reorderedItem);
+    //     setQuery(items);
+    //   } else {
+    //     const items = variables;
+    //     const reorderedItem = items.splice(result.source.index, 1);
+    //     items.splice(result.destination.index, 0, reorderedItem);
+    //     setVariables(items);
+    //   }
+    // }
   };
   return (
     <>
-      <DragDropContext onDragEnd={handleDrag}>
+      <DragDropContext onDragEnd={handleDrag} onDragStart={handleDragStart}>
         {/* <Droppable droppableId="index"> */}
         {/* {(provided) => ( */}
         <>
