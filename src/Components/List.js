@@ -5,7 +5,15 @@ import { VarBox } from "./VarBox";
 
 export const List = (props) => {
   const getBoxes = (item, index) => {
-    return <VarBox dropBox={"source"} key={index} value={item} index={index} />;
+    return (
+      <VarBox
+        dragDisable={false}
+        dropBox={"source"}
+        key={index}
+        value={item}
+        index={index}
+      />
+    );
   };
   return (
     // <DragDropContext onDragEnd={props.handleDrag}>

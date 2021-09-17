@@ -1,11 +1,25 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
 
-export const VarBox = ({ dropBox, index, value }) => {
+export const VarBox = ({ dropBox, index, value, dragDisable }) => {
+  const operators = ["<", ">", "int"];
+  const spanValue = [">", "<", "Input"];
+  let spanClass = "";
+  let innerSpan = "";
+  if (operators.includes(value)) {
+    innerSpan = operators.indexOf(value);
+    innerSpan = spanValue[innerSpan];
+    spanClass = "operation--button btn";
+  } else {
+    console.log(value);
+    console.log(operators.includes(value));
+    spanClass = "varBox--button btn";
+  }
   return (
     <>
       {/* <div>{dropBox}</div> */}
       <Draggable
+        isDragDisabled={dragDisable}
         key={dropBox + index.toString()}
         draggableId={dropBox + index.toString()}
         index={index}
@@ -17,9 +31,9 @@ export const VarBox = ({ dropBox, index, value }) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}
-            className="varBox--button btn"
+            className={spanClass}
           >
-            {value}
+            {innerSpan || value}
           </span>
         )}
       </Draggable>

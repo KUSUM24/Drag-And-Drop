@@ -5,7 +5,13 @@ import { VarBox } from "./VarBox";
 export const DropPanel = (props) => {
   const getBoxes = (item, index) => {
     return (
-      <VarBox dropBox={"destination"} key={index} value={item} index={index} />
+      <VarBox
+        dropBox={"destination"}
+        dragDisable={true}
+        key={index}
+        value={item}
+        index={index}
+      />
     );
   };
   return (

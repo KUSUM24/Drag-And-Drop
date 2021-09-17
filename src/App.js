@@ -260,6 +260,7 @@ export const App = () => {
   ]);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
+  const [operatorDrag, setOperatorDarg] = useState();
   const handleDragStart = (start) => {
     console.log(start);
   };
@@ -299,6 +300,21 @@ export const App = () => {
     ) {
       const item = currentQuery.splice(source.index, 1);
       currentVariables.splice(destination.index, 0, item);
+    }
+    if (
+      source.droppableId == "operator" &&
+      destination.droppableId == "source"
+    ) {
+      return;
+    }
+    if (
+      source.droppableId == "operator" &&
+      destination.droppableId == "destination"
+    ) {
+      let item = source.index;
+
+      console.log(source);
+      currentQuery.splice(destination.index, 0, item);
     }
     setQuery(currentQuery);
     setVariables(currentVariables);
@@ -377,9 +393,9 @@ export const App = () => {
             <Operators className="operators" />
             <DropPanel className="drop-section" query={query} />
           </div>
-          <div className="drop-panel">
-            <Results />
-          </div>
+          {/* <div className="drop-panel"> */}
+          {/* <Results /> */}
+          {/* </div> */}
         </>
         {/* )} */}
         {/* </Droppable> */}
