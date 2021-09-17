@@ -15,7 +15,11 @@ export const Operators = () => {
           className="operator--container"
         >
           {/* <div className="operation--container"> */}
-          <Draggable key={"operator-gt"} draggableId={"operator-gt"} index={0}>
+          <Draggable
+            key={"operator-gt"}
+            draggableId={"operator-gt"}
+            index={300}
+          >
             {(provided) => (
               <div
                 {...provided.draggableProps}
@@ -27,7 +31,11 @@ export const Operators = () => {
               </div>
             )}
           </Draggable>
-          <Draggable key={"operator-lt"} draggableId={"operator-lt"} index={1}>
+          <Draggable
+            key={"operator-lt"}
+            draggableId={"operator-lt"}
+            index={301}
+          >
             {(provided) => (
               <div
                 {...provided.draggableProps}
@@ -44,7 +52,7 @@ export const Operators = () => {
           <Draggable
             key={"operator-int"}
             draggableId={"operator-int"}
-            index={2}
+            index={302}
           >
             {(provided) => (
               <div

@@ -65,6 +65,9 @@ hr {
   flex: 2;
   height: 200vh;
 }
+.drop-panel--container .integer--button {
+  padding: 40px !important;
+}
 @media screen and (max-width: 780px) {
   .operator--container {
     width: 100%;
