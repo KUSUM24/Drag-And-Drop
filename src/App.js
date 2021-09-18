@@ -229,6 +229,7 @@ export const App = () => {
                   integerModal={integerModal}
                   submitInteger={handleSubmitInteger}
                 />
+
                 <div className="d-flex justify-content-center">
                   <div
                     className="btn btn-primary w-50 mt-3"
@@ -240,6 +241,7 @@ export const App = () => {
                 <div>{queryStatus ? <></> : <></>}</div>
               </div>
             </div>
+            <hr className="result-hr my-2" />
             <div className="drop-panel d-flex justify-content-center">
               <Results results={results} variable={variable} />
             </div>
