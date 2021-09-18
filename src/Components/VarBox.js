@@ -1,5 +1,6 @@
 import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import CancelIcon from "@material-ui/icons/Cancel";
 
 export const VarBox = ({ dropBox, index, value, dragDisable }) => {
   const operators = ["<", ">", "Int"];
@@ -30,15 +31,18 @@ export const VarBox = ({ dropBox, index, value, dragDisable }) => {
         // id={index.toString()}
       >
         {(provided) => (
-          <span
-            // key={index.toString()}
-            {...provided.draggableProps}
-            {...provided.dragHandleProps}
-            ref={provided.innerRef}
-            className={spanClass}
-          >
-            {innerSpan || value}
-          </span>
+          <div>
+            <CancelIcon className="cross-btn" />
+            <span
+              // key={index.toString()}
+              {...provided.draggableProps}
+              {...provided.dragHandleProps}
+              ref={provided.innerRef}
+              className={spanClass}
+            >
+              {innerSpan || value}
+            </span>
+          </div>
         )}
       </Draggable>
     </>

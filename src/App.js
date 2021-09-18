@@ -391,14 +391,14 @@ export const App = () => {
             variables={variables}
             handleDrag={handleDrag}
           />
-          <div className="drag-panel">
+          <div className="drag-panel d-flex">
             <Operators className="operators" />
             <div className="w-100">
               <FormatIndex />
               <DropPanel className="drop-section" query={query} />
             </div>
           </div>
-          <div className="drop-panel">
+          <div className="drop-panel d-flex justify-content-center">
             <Results />
           </div>
         </>
