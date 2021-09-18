@@ -3,10 +3,8 @@ import React from "react";
 export const FormatIndex = () => {
   return (
     <>
-      <div className="drop-heading text-center">DROP PANEL</div>
-      <hr className="m-0" />
-      <div className="d-flex align-items-center justify-content-between">
-        <div>Correct format</div>
+      <div className="d-flex align-items-center justify-content-center">
+        <div className="correct-format">Correct Format :- </div>
         <div className="d-flex">
           <div className="index-source"></div>
           <div className="index-operator"></div>

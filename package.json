@@ -1,5 +1,6 @@
 {
   "name": "new-app",
+  "homepage": "https://kusum24.github.io/Drag-And-Drop/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -231,10 +231,15 @@ export const App = () => {
                   integerModal={integerModal}
                   submitInteger={handleSubmitInteger}
                 />
-                <div className="btn btn-primary" onClick={verifyQuery}>
-                  submit
+                <div className="d-flex justify-content-center">
+                  <div
+                    className="btn btn-primary w-50 mt-3"
+                    onClick={verifyQuery}
+                  >
+                    SUBMIT
+                  </div>
                 </div>
-                <div>{queryStatus ? "valid" : "invalid"}</div>
+                <div>{queryStatus ? <></> : <></>}</div>
               </div>
             </div>
             <div className="drop-panel d-flex justify-content-center">
