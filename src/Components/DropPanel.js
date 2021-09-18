@@ -14,9 +14,12 @@ export const DropPanel = (props) => {
         getIntegerModal={props.getIntegerModal}
         removeQuery={props.removeQuery}
         crossBtn={props.crossBtn}
+        integerModal={props.integerModal}
+        getIntegerValue={props.getIntegerValue}
       />
     );
   };
+  console.log(props.integerModal);
   return (
     <>
       <Droppable droppableId="destination" direction="horizontal">

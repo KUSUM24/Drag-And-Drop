@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import CancelIcon from "@material-ui/icons/Cancel";
+import { Button, Modal } from "react-bootstrap";
 
 export const VarBox = ({
   dropBox,
@@ -10,6 +11,8 @@ export const VarBox = ({
   getIntegerModal,
   removeQuery,
   crossBtn,
+  integerModal,
+  getIntegerValue,
 }) => {
   const operators = ["<", ">", "Int"];
   const spanValue = [">", "<", "Input"];
@@ -36,6 +39,10 @@ export const VarBox = ({
       setCrossDisplay("inline-block");
     }
   }, []);
+
+  const handleClose = () => {
+    getIntegerModal(false);
+  };
   return (
     <>
       {/* <div>{dropBox}</div> */}
@@ -76,6 +83,32 @@ export const VarBox = ({
           </div>
         )}
       </Draggable>
+      <Modal show={integerModal} onHide={handleClose}>
+        <Modal.Header>
+          <Modal.Title>Integer Input</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div class="form-group">
+            <label for="integer-input">Enter Integer</label>
+            <input
+              type="number"
+              class="form-control"
+              id="integer-input"
+              aria-describedby="number"
+              placeholder="Enter Integer"
+              onChange={(event) => getIntegerValue(event.target.value)}
+            />
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Submit
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

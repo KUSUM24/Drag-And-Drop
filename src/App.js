@@ -262,6 +262,7 @@ export const App = () => {
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
   const [crossBtn, setCrossBtn] = useState(true);
+  const [integerModal, setIntegerModal] = useState(false);
   const handleDragStart = (start) => {
     console.log(start);
     setCrossBtn(false);
@@ -324,8 +325,12 @@ export const App = () => {
     setQuery(currentQuery);
     setVariables(currentVariables);
   };
-  const handleIntegerModal = () => {
-    console.log("stusdbhdbh");
+  const handleIntegerModal = (status) => {
+    setIntegerModal(status);
+    console.log(status, "bhhgv");
+  };
+  const handleIntegerValue = (integerValue) => {
+    console.log(integerValue);
   };
   const handleRemoveQuery = (index) => {
     const currentQuery = query;
@@ -356,6 +361,8 @@ export const App = () => {
                 getIntegerModal={handleIntegerModal}
                 removeQuery={handleRemoveQuery}
                 crossBtn={crossBtn}
+                integerModal={integerModal}
+                getIntegerValue={handleIntegerValue}
               />
             </div>
           </div>
