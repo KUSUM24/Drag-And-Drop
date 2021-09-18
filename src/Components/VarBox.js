@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import CancelIcon from "@material-ui/icons/Cancel";
 
-export const VarBox = ({ dropBox, index, value, dragDisable }) => {
+export const VarBox = ({
+  dropBox,
+  index,
+  value,
+  dragDisable,
+  getIntegerModal,
+}) => {
   const operators = ["<", ">", "Int"];
   const spanValue = [">", "<", "Input"];
   const [crossDisplay, setCrossDisplay] = useState(false);
+  // const [integerModal, setIntegerModal] = useState(false);
   let spanClass = "";
   let innerSpan = "";
   if (operators.includes(value)) {
@@ -46,6 +53,13 @@ export const VarBox = ({ dropBox, index, value, dragDisable }) => {
               {...provided.dragHandleProps}
               ref={provided.innerRef}
               className={spanClass}
+              onClick={
+                spanClass == "integer--button btn btn-success"
+                  ? () => {
+                      getIntegerModal(true);
+                    }
+                  : () => {}
+              }
             >
               {innerSpan || value}
             </span>

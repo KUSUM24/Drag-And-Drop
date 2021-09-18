@@ -11,6 +11,7 @@ export const DropPanel = (props) => {
         key={index}
         value={item}
         index={index}
+        getIntegerModal={props.getIntegerModal}
       />
     );
   };
