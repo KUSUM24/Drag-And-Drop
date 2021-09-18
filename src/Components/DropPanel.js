@@ -13,8 +13,10 @@ export const DropPanel = (props) => {
         value={item}
         index={index}
         getIntegerModal={props.getIntegerModal}
+        removeQuery={props.removeQuery}
+        crossBtn={props.crossBtn}
         integerModal={props.integerModal}
-        getIntegerValue={props.getIntegerValue}
+        submitInteger={props.submitInteger}
       />
     );
   };

@@ -18,254 +18,25 @@ export const App = () => {
     "C",
     "D",
     "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
-    "K",
-    "A",
-    "B",
-    "C",
-    "D",
     "K",
   ]);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
+  const [crossBtn, setCrossBtn] = useState(true);
   const [integerModal, setIntegerModal] = useState(false);
+  const [integerValue, setIntegerValue] = useState();
+  useEffect(() => {
+    const currentQuery = query;
+    const index = currentQuery.indexOf("Int");
+    console.log("thsi is int", integerValue);
+    currentQuery[index] = parseInt(integerValue);
+    setQuery([...currentQuery]);
+  }, [integerValue]);
   const handleDragStart = (start) => {
-    console.log(start);
+    setCrossBtn(false);
   };
   const handleDrag = (result) => {
+    setCrossBtn(true);
     const { source, destination } = result;
     if (!source || !destination) {
       return;
@@ -273,7 +44,6 @@ export const App = () => {
     if (destination.droppableId == "operator") {
       return;
     }
-    console.log(source.droppableId, destination.droppableId);
     let currentVariables = variables;
     let currentQuery = query;
     if (currentQuery.length >= 3) {
@@ -289,7 +59,8 @@ export const App = () => {
       destination.droppableId == "destination"
     ) {
       const item = currentVariables.splice(source.index, 1);
-      currentQuery.splice(destination.index, 0, item);
+      console.log(item);
+      currentQuery.splice(destination.index, 0, item[0]);
     }
     if (
       source.droppableId == "destination" &&
@@ -316,7 +87,6 @@ export const App = () => {
       } else {
         item = "Int";
       }
-      console.log(source);
       currentQuery.splice(destination.index, 0, item);
     }
     setQuery(currentQuery);
@@ -324,10 +94,14 @@ export const App = () => {
   };
   const handleIntegerModal = (status) => {
     setIntegerModal(status);
-    console.log(status, "bhhgv");
   };
-  const handleIntegerValue = (integerValue) => {
-    console.log(integerValue);
+  const handleRemoveQuery = (index) => {
+    const currentQuery = query;
+    currentQuery.splice(index, 1);
+    setQuery([...currentQuery]);
+  };
+  const handleSubmitInteger = (value) => {
+    setIntegerValue(value);
   };
   return (
     <>
@@ -349,8 +123,10 @@ export const App = () => {
                 className="drop-section"
                 query={query}
                 getIntegerModal={handleIntegerModal}
+                removeQuery={handleRemoveQuery}
+                crossBtn={crossBtn}
                 integerModal={integerModal}
-                getIntegerValue={handleIntegerValue}
+                submitInteger={handleSubmitInteger}
               />
             </div>
           </div>
