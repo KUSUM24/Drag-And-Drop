@@ -34,8 +34,6 @@ export const VarBox = ({
       spanClass = "operation--button btn";
     }
   } else {
-    console.log(value);
-    console.log(operators.includes(value));
     spanClass = "varBox--button btn";
   }
   if (typeof value == "number") {

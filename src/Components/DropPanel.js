@@ -1,5 +1,6 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
+import { Button } from "react-bootstrap";
 import { VarBox } from "./VarBox";
 
 export const DropPanel = (props) => {
@@ -19,7 +20,6 @@ export const DropPanel = (props) => {
       />
     );
   };
-  console.log(props.integerModal);
   return (
     <>
       <Droppable droppableId="destination" direction="horizontal">

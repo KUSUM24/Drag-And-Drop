@@ -6,6 +6,7 @@ import { Operators } from "./Components/Operators";
 import { Results } from "./Components/Results";
 import "./styles/custom.css";
 import { FormatIndex } from "./Components/FormatIndex";
+import { Button } from "react-bootstrap";
 export const App = () => {
   const [variables, setVariables] = useState([
     "Kusum",
@@ -25,10 +26,10 @@ export const App = () => {
   const [crossBtn, setCrossBtn] = useState(true);
   const [integerModal, setIntegerModal] = useState(false);
   const [integerValue, setIntegerValue] = useState();
+  const [queryStatus, setQueryStatus] = useState(false);
   useEffect(() => {
     const currentQuery = query;
     const index = currentQuery.indexOf("Int");
-    console.log("thsi is int", integerValue);
     currentQuery[index] = parseInt(integerValue);
     setQuery([...currentQuery]);
   }, [integerValue]);
@@ -59,7 +60,6 @@ export const App = () => {
       destination.droppableId == "destination"
     ) {
       const item = currentVariables.splice(source.index, 1);
-      console.log(item);
       currentQuery.splice(destination.index, 0, item[0]);
     }
     if (
@@ -103,6 +103,32 @@ export const App = () => {
   const handleSubmitInteger = (value) => {
     setIntegerValue(value);
   };
+  const verifyQuery = () => {
+    const currentQuery = query;
+    let valid = true;
+    if (currentQuery.length != 3) {
+      valid = false;
+    } else {
+      let first =
+        typeof currentQuery[0] != "number" && !currentQuery[0].match(/[<>]/);
+      let second =
+        typeof currentQuery[1] != "number" && currentQuery[1].match(/[<>]/);
+      let third = typeof currentQuery[2] == "number";
+      let forth = typeof currentQuery[0] == "number";
+      let fifth =
+        typeof currentQuery[1] != "number" && currentQuery[1].match(/[<>]/);
+      let sixth =
+        typeof currentQuery[2] != "number" && !currentQuery[2].match(/[<>]/);
+      console.log(first, second, third);
+      if (first && second && third) {
+        valid = true;
+      } else {
+        valid = false;
+      }
+    }
+    setQueryStatus(valid);
+    console.log("valid -> ", valid);
+  };
   return (
     <>
       <DragDropContext onDragEnd={handleDrag} onDragStart={handleDragStart}>
@@ -128,6 +154,10 @@ export const App = () => {
                 integerModal={integerModal}
                 submitInteger={handleSubmitInteger}
               />
+              <div className="btn btn-primary" onClick={verifyQuery}>
+                submit
+              </div>
+              <div>{queryStatus ? "valid" : "invalid"}</div>
             </div>
           </div>
           <div className="drop-panel d-flex justify-content-center">
