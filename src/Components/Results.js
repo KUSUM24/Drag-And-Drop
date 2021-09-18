@@ -15,7 +15,8 @@ export const Results = () => {
   };
   return (
     <div className="results--container">
-      <div>MATCHED RESULT</div>
+      <div className="result-heading">MATCHED RESULT</div>
+      <hr className="result-hr" />
       <table class="table">
         <thead class="thead-light">
           <tr>
