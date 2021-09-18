@@ -1,6 +1,7 @@
 import React from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { VarBox } from "./VarBox";
+import { Button } from "react-bootstrap";
 
 export const DropPanel = (props) => {
   const getBoxes = (item, index) => {

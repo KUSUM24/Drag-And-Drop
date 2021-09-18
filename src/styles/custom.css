@@ -53,9 +53,11 @@ hr {
   overflow-x: scroll;
 }
 .results--container {
-  border: 2px solid gray;
+  border: 1px solid rgb(4, 8, 252);
   width: 50%;
-  background-color: lavender;
+  /* background-color: rgb(202, 199, 199); */
+  /* color: rgb(202, 199, 199); */
+  text-align: center;
 }
 .operators {
   flex: 1;
