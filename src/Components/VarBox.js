@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import CancelIcon from "@material-ui/icons/Cancel";
 import { Button, Modal } from "react-bootstrap";
@@ -12,14 +12,19 @@ export const VarBox = ({
   removeQuery,
   crossBtn,
   integerModal,
-  getIntegerValue,
+  submitInteger,
 }) => {
+  const integerValueRef = useRef();
   const operators = ["<", ">", "Int"];
   const spanValue = [">", "<", "Input"];
   const [crossDisplay, setCrossDisplay] = useState("none");
   // const [integerModal, setIntegerModal] = useState(false);
   let spanClass = "";
   let innerSpan = "";
+  let intBox = false;
+  if (typeof value == "number") {
+    intBox = true;
+  }
   if (operators.includes(value)) {
     innerSpan = operators.indexOf(value);
     innerSpan = spanValue[innerSpan];
@@ -32,6 +37,9 @@ export const VarBox = ({
     console.log(value);
     console.log(operators.includes(value));
     spanClass = "varBox--button btn";
+  }
+  if (typeof value == "number") {
+    spanClass = "integer--button btn btn-success";
   }
 
   useEffect(() => {
@@ -88,15 +96,15 @@ export const VarBox = ({
           <Modal.Title>Integer Input</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div class="form-group">
+          <div className="form-group">
             <label for="integer-input">Enter Integer</label>
             <input
               type="number"
-              class="form-control"
+              className="form-control"
               id="integer-input"
               aria-describedby="number"
               placeholder="Enter Integer"
-              onChange={(event) => getIntegerValue(event.target.value)}
+              ref={integerValueRef}
             />
           </div>
         </Modal.Body>
@@ -104,7 +112,13 @@ export const VarBox = ({
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button
+            variant="primary"
+            onClick={() => {
+              submitInteger(integerValueRef.current.value);
+              handleClose();
+            }}
+          >
             Submit
           </Button>
         </Modal.Footer>
