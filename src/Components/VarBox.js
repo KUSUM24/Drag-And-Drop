@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import CancelIcon from "@material-ui/icons/Cancel";
 
 export const VarBox = ({ dropBox, index, value, dragDisable }) => {
   const operators = ["<", ">", "Int"];
   const spanValue = [">", "<", "Input"];
+  const [crossDisplay, setCrossDisplay] = useState(false);
   let spanClass = "";
   let innerSpan = "";
   if (operators.includes(value)) {
@@ -20,6 +21,9 @@ export const VarBox = ({ dropBox, index, value, dragDisable }) => {
     console.log(operators.includes(value));
     spanClass = "varBox--button btn";
   }
+  // if (dragDisable) {
+  //   setCrossDisplay(true);
+  // }
   return (
     <>
       {/* <div>{dropBox}</div> */}
@@ -32,7 +36,10 @@ export const VarBox = ({ dropBox, index, value, dragDisable }) => {
       >
         {(provided) => (
           <div>
-            <CancelIcon className="cross-btn" />
+            <CancelIcon
+              className="cross-btn"
+              style={{ display: `${crossDisplay}` }}
+            />
             <span
               // key={index.toString()}
               {...provided.draggableProps}

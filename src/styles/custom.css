@@ -67,6 +67,7 @@ hr {
 }
 .drop-panel--container .integer--button {
   padding: 40px !important;
+  /* font-size: 20px; */
 }
 .index-source {
   width: 40px;
@@ -95,9 +96,11 @@ hr {
 }
 .cross-btn {
   position: relative;
-  right: 20%;
-  margin-bottom: -25%;
+  left: 85%;
+  top: 0%;
+  margin-top: -75%;
   color: rgb(27, 26, 26);
+  cursor: pointer;
 }
 @media screen and (max-width: 780px) {
   .operator--container {
