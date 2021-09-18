@@ -200,6 +200,8 @@ export const App = () => {
       });
       console.log(requiredDataSetValues);
       setResults([...requiredDataSetValues]);
+    } else {
+      window.alert("Please enter a valid query in the given format");
     }
     // console.log("valid -> ", valid);
   };
