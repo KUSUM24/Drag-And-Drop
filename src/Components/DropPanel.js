@@ -12,6 +12,8 @@ export const DropPanel = (props) => {
         value={item}
         index={index}
         getIntegerModal={props.getIntegerModal}
+        removeQuery={props.removeQuery}
+        crossBtn={props.crossBtn}
       />
     );
   };

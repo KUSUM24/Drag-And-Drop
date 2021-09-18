@@ -261,10 +261,13 @@ export const App = () => {
   ]);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
+  const [crossBtn, setCrossBtn] = useState(true);
   const handleDragStart = (start) => {
     console.log(start);
+    setCrossBtn(false);
   };
   const handleDrag = (result) => {
+    setCrossBtn(true);
     const { source, destination } = result;
     if (!source || !destination) {
       return;
@@ -288,7 +291,7 @@ export const App = () => {
       destination.droppableId == "destination"
     ) {
       const item = currentVariables.splice(source.index, 1);
-      currentQuery.splice(currentQuery.length, 0, item);
+      currentQuery.splice(destination.index, 0, item);
     }
     if (
       source.droppableId == "destination" &&
@@ -316,13 +319,20 @@ export const App = () => {
         item = "Int";
       }
       console.log(source);
-      currentQuery.splice(currentQuery.length, 0, item);
+      currentQuery.splice(destination.index, 0, item);
     }
     setQuery(currentQuery);
     setVariables(currentVariables);
   };
   const handleIntegerModal = () => {
     console.log("stusdbhdbh");
+  };
+  const handleRemoveQuery = (index) => {
+    const currentQuery = query;
+    currentQuery.splice(index, 1);
+    console.log(currentQuery);
+    setQuery([...currentQuery]);
+    console.log(index);
   };
   return (
     <>
@@ -344,6 +354,8 @@ export const App = () => {
                 className="drop-section"
                 query={query}
                 getIntegerModal={handleIntegerModal}
+                removeQuery={handleRemoveQuery}
+                crossBtn={crossBtn}
               />
             </div>
           </div>
