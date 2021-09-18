@@ -12,9 +12,12 @@ export const DropPanel = (props) => {
         value={item}
         index={index}
         getIntegerModal={props.getIntegerModal}
+        integerModal={props.integerModal}
+        getIntegerValue={props.getIntegerValue}
       />
     );
   };
+  console.log(props.integerModal);
   return (
     <>
       <Droppable droppableId="destination" direction="horizontal">

@@ -261,6 +261,7 @@ export const App = () => {
   ]);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
+  const [integerModal, setIntegerModal] = useState(false);
   const handleDragStart = (start) => {
     console.log(start);
   };
@@ -288,7 +289,7 @@ export const App = () => {
       destination.droppableId == "destination"
     ) {
       const item = currentVariables.splice(source.index, 1);
-      currentQuery.splice(currentQuery.length, 0, item);
+      currentQuery.splice(destination.index, 0, item);
     }
     if (
       source.droppableId == "destination" &&
@@ -316,13 +317,17 @@ export const App = () => {
         item = "Int";
       }
       console.log(source);
-      currentQuery.splice(currentQuery.length, 0, item);
+      currentQuery.splice(destination.index, 0, item);
     }
     setQuery(currentQuery);
     setVariables(currentVariables);
   };
-  const handleIntegerModal = () => {
-    console.log("stusdbhdbh");
+  const handleIntegerModal = (status) => {
+    setIntegerModal(status);
+    console.log(status, "bhhgv");
+  };
+  const handleIntegerValue = (integerValue) => {
+    console.log(integerValue);
   };
   return (
     <>
@@ -344,6 +349,8 @@ export const App = () => {
                 className="drop-section"
                 query={query}
                 getIntegerModal={handleIntegerModal}
+                integerModal={integerModal}
+                getIntegerValue={handleIntegerValue}
               />
             </div>
           </div>
