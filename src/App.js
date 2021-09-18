@@ -221,6 +221,8 @@ export const App = () => {
             <div className="drag-panel d-flex">
               <Operators className="operators" />
               <div className="w-100">
+                <div className="drop-heading text-center">DROP PANEL</div>
+                <hr />
                 <FormatIndex />
                 <DropPanel
                   className="drop-section"
