@@ -8,28 +8,79 @@ import "./styles/custom.css";
 import { FormatIndex } from "./Components/FormatIndex";
 import { Button } from "react-bootstrap";
 export const App = () => {
-  const [variables, setVariables] = useState([
-    "Kusum",
-    "B",
-    "C",
-    "D",
-    "Jai",
+  const [variables, setVariables] = useState([]);
+  const [dataSet, setDataSet] = useState([
+    "A",
+    "A",
+    "A",
+    "A",
     "A",
     "B",
+    "B",
+    "B",
+    "B",
+    "B",
+    "B",
+    "C",
+    "C",
+    "C",
     "C",
     "D",
+    "D",
+    "D",
+    "E",
+    "E",
+    "E",
+    "E",
+    "E",
+    "E",
+    "E",
+    "H",
+    "H",
+    "H",
+    "J",
+    "J",
+    "J",
+    "J",
+    "J",
+    "K",
+    "K",
+    "K",
+    "K",
+    "K",
     "K",
     "K",
   ]);
+  const [dataSetValues, setDataSetValues] = useState([
+    10, 20, 25, 100, 60, 0, 15, 30, 50, 150, 200, 75, 70, 80, 90, 0, 10, 200,
+    110, 65, 45, 15, 5, 145, 190, 80, 70, 60, 10, 30, 50, 70, 90, 0, 20, 40, 60,
+    80, 100, 120,
+  ]);
+  const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState([]);
   const [operation, setOperation] = useState();
   const [crossBtn, setCrossBtn] = useState(true);
   const [integerModal, setIntegerModal] = useState(false);
   const [integerValue, setIntegerValue] = useState();
   const [queryStatus, setQueryStatus] = useState(false);
+  const [variable, setVariable] = useState();
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+    const newDatasSet = new Set(dataSet);
+
+    setVariables([...newDatasSet]);
+    setLoading(false);
+  }, []);
   useEffect(() => {
     const currentQuery = query;
-    const index = currentQuery.indexOf("Int");
+    let index = currentQuery.indexOf("Int");
+    if (index == -1) {
+      currentQuery.forEach((q, i) => {
+        if (typeof q == "number") {
+          index = i;
+        }
+      });
+    }
     currentQuery[index] = parseInt(integerValue);
     setQuery([...currentQuery]);
   }, [integerValue]);
@@ -114,12 +165,11 @@ export const App = () => {
       let second =
         typeof currentQuery[1] != "number" && currentQuery[1].match(/[<>]/);
       let third = typeof currentQuery[2] == "number";
-      let forth = typeof currentQuery[0] == "number";
-      let fifth =
-        typeof currentQuery[1] != "number" && currentQuery[1].match(/[<>]/);
-      let sixth =
-        typeof currentQuery[2] != "number" && !currentQuery[2].match(/[<>]/);
-      console.log(first, second, third);
+      // let forth = typeof currentQuery[0] == "number";
+      // let fifth =
+      //   typeof currentQuery[1] != "number" && currentQuery[1].match(/[<>]/);
+      // let sixth =
+      //   typeof currentQuery[2] != "number" && !currentQuery[2].match(/[<>]/);
       if (first && second && third) {
         valid = true;
       } else {
@@ -127,46 +177,72 @@ export const App = () => {
       }
     }
     setQueryStatus(valid);
-    console.log("valid -> ", valid);
+    if (valid) {
+      const [variable, operator, number] = query;
+      setVariable(variable);
+      let requiredDataIndexes = [];
+      let requiredDataSetValues = [];
+      dataSet.forEach((value, index) => {
+        if (value == variable) {
+          requiredDataIndexes.push(index);
+        }
+      });
+      requiredDataIndexes.forEach((index) => {
+        if (operator == ">") {
+          if (dataSetValues[index] < number) {
+            requiredDataSetValues.push(dataSetValues[index]);
+          }
+        } else {
+          if (dataSetValues[index] > number) {
+            requiredDataSetValues.push(dataSetValues[index]);
+          }
+        }
+      });
+      console.log(requiredDataSetValues);
+      setResults([...requiredDataSetValues]);
+    }
+    // console.log("valid -> ", valid);
   };
   return (
     <>
-      <DragDropContext onDragEnd={handleDrag} onDragStart={handleDragStart}>
-        {/* <Droppable droppableId="index"> */}
-        {/* {(provided) => ( */}
-        <>
-          <List
-            // innerRef={provided.innerRef}
-            // {...provided.droppableProps}
-            variables={variables}
-            handleDrag={handleDrag}
-          />
-          <div className="drag-panel d-flex">
-            <Operators className="operators" />
-            <div className="w-100">
-              <FormatIndex />
-              <DropPanel
-                className="drop-section"
-                query={query}
-                getIntegerModal={handleIntegerModal}
-                removeQuery={handleRemoveQuery}
-                crossBtn={crossBtn}
-                integerModal={integerModal}
-                submitInteger={handleSubmitInteger}
-              />
-              <div className="btn btn-primary" onClick={verifyQuery}>
-                submit
+      {!loading && (
+        <DragDropContext onDragEnd={handleDrag} onDragStart={handleDragStart}>
+          {/* <Droppable droppableId="index"> */}
+          {/* {(provided) => ( */}
+          <>
+            <List
+              // innerRef={provided.innerRef}
+              // {...provided.droppableProps}
+              variables={variables}
+              handleDrag={handleDrag}
+            />
+            <div className="drag-panel d-flex">
+              <Operators className="operators" />
+              <div className="w-100">
+                <FormatIndex />
+                <DropPanel
+                  className="drop-section"
+                  query={query}
+                  getIntegerModal={handleIntegerModal}
+                  removeQuery={handleRemoveQuery}
+                  crossBtn={crossBtn}
+                  integerModal={integerModal}
+                  submitInteger={handleSubmitInteger}
+                />
+                <div className="btn btn-primary" onClick={verifyQuery}>
+                  submit
+                </div>
+                <div>{queryStatus ? "valid" : "invalid"}</div>
               </div>
-              <div>{queryStatus ? "valid" : "invalid"}</div>
             </div>
-          </div>
-          <div className="drop-panel d-flex justify-content-center">
-            <Results />
-          </div>
-        </>
-        {/* )} */}
-        {/* </Droppable> */}
-      </DragDropContext>
+            <div className="drop-panel d-flex justify-content-center">
+              <Results results={results} variable={variable} />
+            </div>
+          </>
+          {/* )} */}
+          {/* </Droppable> */}
+        </DragDropContext>
+      )}
     </>
   );
 };
