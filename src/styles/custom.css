@@ -119,6 +119,9 @@ hr {
   opacity: 1;
   margin: 0%;
 }
+.correct-format {
+  font-size: 130%;
+}
 @media screen and (max-width: 780px) {
   .operator--container {
     width: 100%;

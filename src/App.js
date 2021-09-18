@@ -143,7 +143,10 @@ export const App = () => {
           />
           <div className="drag-panel d-flex">
             <Operators className="operators" />
+
             <div className="w-100">
+              <div className="drop-heading text-center">DROP PANEL</div>
+              <hr className="m-0" />
               <FormatIndex />
               <DropPanel
                 className="drop-section"
@@ -154,10 +157,15 @@ export const App = () => {
                 integerModal={integerModal}
                 submitInteger={handleSubmitInteger}
               />
-              <div className="btn btn-primary" onClick={verifyQuery}>
-                submit
+              <div className="d-flex justify-content-center">
+                <div
+                  className="btn btn-primary w-50 mt-3"
+                  onClick={verifyQuery}
+                >
+                  SUBMIT
+                </div>
               </div>
-              <div>{queryStatus ? "valid" : "invalid"}</div>
+              <div>{queryStatus ? <></> : <></>}</div>
             </div>
           </div>
           <div className="drop-panel d-flex justify-content-center">
