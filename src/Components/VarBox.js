@@ -51,13 +51,11 @@ export const VarBox = ({
   };
   return (
     <>
-      {/* <div>{dropBox}</div> */}
       <Draggable
         isDragDisabled={dragDisable}
         key={dropBox + index.toString()}
         draggableId={dropBox + index.toString()}
         index={index}
-        // id={index.toString()}
       >
         {(provided) => (
           <div>
@@ -71,7 +69,6 @@ export const VarBox = ({
               />
             )}
             <span
-              // key={index.toString()}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
               ref={provided.innerRef}

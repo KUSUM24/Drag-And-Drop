@@ -16,7 +16,6 @@ export const List = (props) => {
     );
   };
   return (
-    // <DragDropContext onDragEnd={props.handleDrag}>
     <Droppable droppableId="source" direction="horizontal">
       {(provided) => (
         <div
@@ -29,6 +28,5 @@ export const List = (props) => {
         </div>
       )}
     </Droppable>
-    // </DragDropContext>
   );
 };

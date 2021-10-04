@@ -14,7 +14,6 @@ export const Operators = () => {
           ref={provided.innerRef}
           className="operator--container"
         >
-          {/* <div className="operation--container"> */}
           <Draggable
             key={"operator-gt"}
             draggableId={"operator-gt"}
@@ -47,7 +46,6 @@ export const Operators = () => {
               </div>
             )}
           </Draggable>
-          {/* </div> */}
           <hr className="w-75" />
           <Draggable
             key={"operator-int"}

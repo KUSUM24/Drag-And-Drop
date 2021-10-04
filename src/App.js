@@ -198,26 +198,17 @@ export const App = () => {
           }
         }
       });
-      console.log(requiredDataSetValues);
       setResults([...requiredDataSetValues]);
     } else {
       window.alert("Please enter a valid query in the given format");
     }
-    // console.log("valid -> ", valid);
   };
   return (
     <>
       {!loading && (
         <DragDropContext onDragEnd={handleDrag} onDragStart={handleDragStart}>
-          {/* <Droppable droppableId="index"> */}
-          {/* {(provided) => ( */}
           <>
-            <List
-              // innerRef={provided.innerRef}
-              // {...provided.droppableProps}
-              variables={variables}
-              handleDrag={handleDrag}
-            />
+            <List variables={variables} handleDrag={handleDrag} />
             <div className="drag-panel d-flex">
               <Operators className="operators" />
               <div className="w-100">
@@ -250,8 +241,6 @@ export const App = () => {
               <Results results={results} variable={variable} />
             </div>
           </>
-          {/* )} */}
-          {/* </Droppable> */}
         </DragDropContext>
       )}
     </>

@@ -6,7 +6,6 @@ export const Results = ({ results, variable }) => {
       <>
         <tr>
           <td scope="row">{variable}</td>
-          {/* <td>&lt;</td> */}
           <td>{item}</td>
         </tr>
       </>
@@ -22,7 +21,6 @@ export const Results = ({ results, variable }) => {
             <thead class="thead-light">
               <tr>
                 <th scope="col">Variable</th>
-                {/* <th scope="col">Operator</th> */}
                 <th scope="col">Integer</th>
               </tr>
             </thead>
